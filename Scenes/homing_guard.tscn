@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw14asiy5lnrk"]
+
+[ext_resource type="Texture2D" uid="uid://btbe5vd7v78wh" path="res://Assets/guard_03.png" id="1_tjkjy"]
+[ext_resource type="Script" path="res://Scripts/homing_guard.gd" id="1_vi4r6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ul2l6"]
+radius = 309.002
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bvm7"]
+
+[node name="HomingGuard" type="CharacterBody2D"]
+platform_floor_layers = 4294967040
+script = ExtResource("1_vi4r6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_tjkjy")
+hframes = 56
+vframes = 20
+frame = 3
+
+[node name="Chase_Range" type="Area2D" parent="."]
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Range"]
+shape = SubResource("CircleShape2D_ul2l6")
+debug_color = Color(0.807843, 0.376471, 0.462745, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4bvm7")
+
+[connection signal="body_entered" from="Chase_Range" to="." method="_on_chase_range_body_entered"]
