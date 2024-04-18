@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwi5sr432kpkq"]
+
+[ext_resource type="Script" path="res://loading_screen.gd" id="1_sqnj8"]
+[ext_resource type="Texture2D" uid="uid://bsjkbhrlmm2l2" path="res://Assets/chef.png" id="2_ht0f5"]
+
+[sub_resource type="Animation" id="Animation_0320x"]
+resource_name = "spin"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qldxv"]
+_data = {
+"spin": SubResource("Animation_0320x")
+}
+
+[node name="Loading Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sqnj8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 1166.0
+offset_bottom = 665.0
+color = Color(0, 0, 0, 1)
+
+[node name="Game Name" type="Label" parent="."]
+offset_left = 568.0
+offset_top = 13.0
+offset_right = 1134.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.509804, 0, 0.509804, 1)
+theme_override_font_sizes/font_size = 51
+text = "Bistro 13 Delivery Dash"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 607.0
+offset_top = 522.0
+offset_right = 1013.0
+offset_bottom = 644.0
+theme_override_font_sizes/font_size = 60
+text = "Cooking:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="countDown" type="Label" parent="."]
+layout_mode = 0
+offset_left = 983.0
+offset_top = 528.0
+offset_right = 1148.0
+offset_bottom = 650.0
+theme_override_font_sizes/font_size = 60
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chef" type="Sprite2D" parent="."]
+position = Vector2(258, 321)
+scale = Vector2(11.5938, 9.88281)
+texture = ExtResource("2_ht0f5")
+hframes = 56
+vframes = 20
+
+[node name="ChefAnimator" type="AnimationPlayer" parent="Chef"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_qldxv")
+}

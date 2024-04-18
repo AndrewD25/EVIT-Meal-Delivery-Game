@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://mtb3ky5j4jpr"]
+[gd_scene load_steps=2 format=3 uid="uid://mtb3ky5j4jpr"]
 
-[node name="Building" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qbwx"]
+size = Vector2(577, 537)
+
+[node name="BuildingTemplate" type="StaticBody2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_4qbwx")

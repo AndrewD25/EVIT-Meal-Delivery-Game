@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed = 200
-@onready var player = get_node("/root/Main/Player")
+@export var speed = 210
 
 
 func _physics_process(delta):

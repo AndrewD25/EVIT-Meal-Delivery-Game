@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv01dnnsnb88r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgd1t"]
+size = Vector2(41, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0rho"]
+size = Vector2(37, 30)
+
+[node name="InteriorTemplate" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Entrance" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance"]
+position = Vector2(-218, -273)
+shape = SubResource("RectangleShape2D_hgd1t")
+debug_color = Color(0.192157, 0.623529, 0.160784, 0.419608)
+
+[node name="Entrance2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance2"]
+position = Vector2(296, -162)
+shape = SubResource("RectangleShape2D_hgd1t")
+debug_color = Color(0.192157, 0.623529, 0.160784, 0.419608)
+
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(-286, 169)
+shape = SubResource("RectangleShape2D_w0rho")
+debug_color = Color(0.976471, 0, 0.14902, 0.419608)
+
+[node name="Exit2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit2"]
+position = Vector2(292, 90)
+shape = SubResource("RectangleShape2D_w0rho")
+debug_color = Color(0.976471, 0, 0.14902, 0.419608)

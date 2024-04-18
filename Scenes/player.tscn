@@ -1,10 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=13 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkjrq"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_s5qgt"]
+resource_name = "idle_down"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [74, 75, 76, 77, 78, 79]
+}
 
 [sub_resource type="Animation" id="Animation_6yjq7"]
 resource_name = "walk_down"
@@ -76,11 +93,29 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x07yw"]
 _data = {
+"idle_down": SubResource("Animation_s5qgt"),
 "walk_down": SubResource("Animation_6yjq7"),
 "walk_left": SubResource("Animation_hg7kw"),
 "walk_right": SubResource("Animation_qygn4"),
 "walk_up": SubResource("Animation_fvvcl")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uq18c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.396078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmphi"]
+bg_color = Color(0.32549, 0.341176, 0.329412, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luc5y"]
+bg_color = Color(0.219608, 0.592157, 0.890196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 129
@@ -93,7 +128,7 @@ position = Vector2(0, -26)
 texture = ExtResource("1_hsblf")
 hframes = 56
 vframes = 20
-frame = 3
+frame = 74
 region_rect = Rect2(127.964, 333.843, 32.2454, 51.5226)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -105,3 +140,55 @@ shape = SubResource("CircleShape2D_rkjrq")
 libraries = {
 "": SubResource("AnimationLibrary_x07yw")
 }
+
+[node name="MealLabel" type="Label" parent="."]
+offset_left = -546.0
+offset_top = -254.0
+offset_right = -298.0
+offset_bottom = -220.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_uq18c")
+text = "Meals Remaining: "
+
+[node name="MealsRemaining" type="Label" parent="MealLabel"]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 1.0
+offset_right = 236.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 24
+text = "15
+"
+
+[node name="CurrentLocation" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 235.0
+offset_top = -304.0
+offset_right = 564.0
+offset_bottom = -270.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_uq18c")
+text = "EVIT Campus"
+horizontal_alignment = 1
+
+[node name="EnergyBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -551.0
+offset_top = -307.0
+offset_right = -189.0
+offset_bottom = -266.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vmphi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_luc5y")
+value = 100.0
+show_percentage = false
+
+[node name="EnergyText" type="Label" parent="EnergyBar"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 361.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 24
+text = "Energy"
+horizontal_alignment = 1
+vertical_alignment = 1
