@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://8t23fthalr34"]
+[gd_scene load_steps=3 format=3 uid="uid://8t23fthalr34"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_3d73v"]
+[ext_resource type="AudioStream" uid="uid://bqkn8c34x4hbg" path="res://Audio/mainu.mp3" id="2_6mdnu"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,6 +65,11 @@ offset_bottom = 246.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 76
 text = "Bistro 13 Delivery Dash"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_6mdnu")
+volume_db = 1.0
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

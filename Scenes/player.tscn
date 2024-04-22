@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=16 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
+[ext_resource type="Texture2D" uid="uid://dae08nsyvamir" path="res://Assets/e_prompt.png" id="3_36a2x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkjrq"]
 radius = 8.0
@@ -21,6 +22,26 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [74, 75, 76, 77, 78, 79]
+}
+
+[sub_resource type="Animation" id="Animation_oftdp"]
+resource_name = "sit"
+
+[sub_resource type="Animation" id="Animation_jxjhs"]
+resource_name = "tired"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [337, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 346, 346, 346, 346, 346]
 }
 
 [sub_resource type="Animation" id="Animation_6yjq7"]
@@ -91,26 +112,6 @@ tracks/0/keys = {
 "values": [118, 119, 120, 121, 122, 123]
 }
 
-[sub_resource type="Animation" id="Animation_oftdp"]
-resource_name = "sit"
-
-[sub_resource type="Animation" id="Animation_jxjhs"]
-resource_name = "tired"
-length = 3.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [337, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 346, 346, 346, 346, 346]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x07yw"]
 _data = {
 "idle_down": SubResource("Animation_s5qgt"),
@@ -144,7 +145,6 @@ collision_layer = 129
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("2_g4chh")
-speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -26)
@@ -215,3 +215,10 @@ theme_override_font_sizes/font_size = 24
 text = "Energy"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Keyprompt" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 50
+position = Vector2(0.5, -54)
+scale = Vector2(1.4375, 1.3125)
+texture = ExtResource("3_36a2x")
