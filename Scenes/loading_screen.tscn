@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwi5sr432kpkq"]
 
-[ext_resource type="Script" path="res://loading_screen.gd" id="1_sqnj8"]
+[ext_resource type="Script" path="res://Scripts/loading_screen.gd" id="1_sqnj8"]
 [ext_resource type="Texture2D" uid="uid://bsjkbhrlmm2l2" path="res://Assets/chef.png" id="2_ht0f5"]
 
 [sub_resource type="Animation" id="Animation_0320x"]
@@ -43,6 +43,7 @@ offset_bottom = 665.0
 color = Color(0, 0, 0, 1)
 
 [node name="Game Name" type="Label" parent="."]
+layout_mode = 0
 offset_left = 568.0
 offset_top = 13.0
 offset_right = 1134.0

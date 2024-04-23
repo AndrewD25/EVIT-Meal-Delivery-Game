@@ -5,11 +5,13 @@ extends CharacterBody2D
 
 var energyBar
 var energy
-var meals
+@export var meals = 5
 @export var interact = false
 
 #vars i'm not using yet but need to 
 var losingEnergy = true
+
+@onready var b3 = get_parent().get_node("building_3")
 
 
 func _ready():
@@ -18,9 +20,10 @@ func _ready():
 	meals = 5
 	position.x = -252
 	position.y = 327
+	%Arrow.visible = true
 	
 	#Set location
-	%CurrentLocation.text = get_parent().name
+	%CurrentLocation.text = "EVIT Campus" #Re-add new detection system 
 
 
 func _physics_process(delta):
@@ -37,13 +40,20 @@ func _physics_process(delta):
 		%Keyprompt.visible = false
 	interact=false
 	
+	#Point arrow at superintendent$"../Building 3"
+	%Arrow.look_at(b3.position)
+	
+	#Display meals remaining
+	%MealsRemaining.text = str(meals)
+	
 	#Move if energy left
 	if energy > 0.005:
 		velocity = direction * speed * (1 + 0.5 * sprintMulti)
 		if velocity.length() > 0:
 			$AnimationPlayer.play("walk_down")
 			if energyBar.value > 0:
-				energy -= 0.05 * (1 + 1 * sprintMulti)
+				if losingEnergy:
+					energy -= 0.055 * (1 + 1 * sprintMulti)
 			updateBar()
 		else:
 			$AnimationPlayer.play("idle_down")
@@ -55,4 +65,18 @@ func _physics_process(delta):
 
 func updateBar():
 	energyBar.value = energy
+	
+func insideFlip():
+	losingEnergy = !losingEnergy
+	%Arrow.visible = !%Arrow.visible
 
+func refill(): 
+	if meals > 0:
+		meals -= 1
+		energy = 100
+		%MealDialogue.visible = true
+		%DiaTimer.start()
+		updateBar()
+
+func _on_dia_timer_timeout():
+	%MealDialogue.visible = false

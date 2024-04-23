@@ -2,8 +2,7 @@ extends Control
 
 
 func _on_retry_pressed():
-	var loadingScreen = load("res://loading_screen.tscn")
-	get_tree().change_scene_to_packed(loadingScreen)
+	get_tree().change_scene_to_file("res://Scenes/loading_screen.tscn")
 
 
 func _on_main_menu_pressed():

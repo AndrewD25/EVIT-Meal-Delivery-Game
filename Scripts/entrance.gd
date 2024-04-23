@@ -14,3 +14,4 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("interact"):
 			playerNode.position.x = x_pos
 			playerNode.position.y = y_pos
+			playerNode.insideFlip()

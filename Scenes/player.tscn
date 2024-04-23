@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=17 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
 [ext_resource type="Texture2D" uid="uid://dae08nsyvamir" path="res://Assets/e_prompt.png" id="3_36a2x"]
+[ext_resource type="Texture2D" uid="uid://6b60fupwh1ps" path="res://Assets/arrow.png" id="4_71hej"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkjrq"]
 radius = 8.0
@@ -174,13 +175,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_uq18c")
 text = "Meals Remaining: "
 
 [node name="MealsRemaining" type="Label" parent="MealLabel"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 211.0
 offset_top = 1.0
 offset_right = 236.0
 offset_bottom = 35.0
 theme_override_font_sizes/font_size = 24
-text = "15
+text = "5
 "
 
 [node name="CurrentLocation" type="Label" parent="."]
@@ -222,3 +224,28 @@ z_index = 50
 position = Vector2(0.5, -54)
 scale = Vector2(1.4375, 1.3125)
 texture = ExtResource("3_36a2x")
+
+[node name="MealDialogue" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -326.0
+offset_top = 217.0
+offset_right = 331.0
+offset_bottom = 315.0
+theme_override_colors/font_color = Color(0, 0.611765, 0.796078, 1)
+theme_override_font_sizes/font_size = 45
+text = "\"Thank you for the meal!\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiaTimer" type="Timer" parent="MealDialogue"]
+unique_name_in_owner = true
+wait_time = 2.2
+
+[node name="Arrow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-1, -77)
+scale = Vector2(-0.0372638, -0.0238287)
+texture = ExtResource("4_71hej")
+
+[connection signal="timeout" from="MealDialogue/DiaTimer" to="." method="_on_dia_timer_timeout"]
