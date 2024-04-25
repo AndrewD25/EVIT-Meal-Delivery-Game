@@ -7,9 +7,9 @@ var energyBar
 var energy
 @export var meals = 5
 @export var interact = false
-
-#vars i'm not using yet but need to 
 var losingEnergy = true
+
+var gameOverTimer = 0
 
 @onready var b3 = get_parent().get_node("building_3")
 
@@ -55,13 +55,19 @@ func _physics_process(delta):
 				if losingEnergy:
 					energy -= 0.055 * (1 + 1 * sprintMulti)
 			updateBar()
+			if !%Footsteps.playing:
+				%Footsteps.play()
 		else:
 			$AnimationPlayer.play("idle_down")
+			if %Footsteps.playing:
+				%Footsteps.stop()
 			
 		move_and_slide()
 	else: 
 		$AnimationPlayer.play("tired")
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		gameOverTimer += 1
+		if gameOverTimer >= 200:
+			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 func updateBar():
 	energyBar.value = energy
@@ -80,3 +86,4 @@ func refill():
 
 func _on_dia_timer_timeout():
 	%MealDialogue.visible = false
+

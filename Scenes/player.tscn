@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=18 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
 [ext_resource type="Texture2D" uid="uid://dae08nsyvamir" path="res://Assets/e_prompt.png" id="3_36a2x"]
 [ext_resource type="Texture2D" uid="uid://6b60fupwh1ps" path="res://Assets/arrow.png" id="4_71hej"]
+[ext_resource type="AudioStream" uid="uid://cv3pv7mame6fo" path="res://Audio/slowSteps.wav" id="5_4qdmw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkjrq"]
 radius = 8.0
@@ -166,6 +167,7 @@ libraries = {
 }
 
 [node name="MealLabel" type="Label" parent="."]
+z_index = 500
 offset_left = -546.0
 offset_top = -254.0
 offset_right = -298.0
@@ -176,6 +178,7 @@ text = "Meals Remaining: "
 
 [node name="MealsRemaining" type="Label" parent="MealLabel"]
 unique_name_in_owner = true
+z_index = 500
 layout_mode = 0
 offset_left = 211.0
 offset_top = 1.0
@@ -187,6 +190,7 @@ text = "5
 
 [node name="CurrentLocation" type="Label" parent="."]
 unique_name_in_owner = true
+z_index = 500
 offset_left = 235.0
 offset_top = -304.0
 offset_right = 564.0
@@ -198,6 +202,7 @@ horizontal_alignment = 1
 
 [node name="EnergyBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+z_index = 500
 offset_left = -551.0
 offset_top = -307.0
 offset_right = -189.0
@@ -208,6 +213,7 @@ value = 100.0
 show_percentage = false
 
 [node name="EnergyText" type="Label" parent="EnergyBar"]
+z_index = 500
 layout_mode = 0
 offset_left = -4.0
 offset_top = 2.0
@@ -228,6 +234,7 @@ texture = ExtResource("3_36a2x")
 [node name="MealDialogue" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 500
 offset_left = -326.0
 offset_top = 217.0
 offset_right = 331.0
@@ -247,5 +254,10 @@ unique_name_in_owner = true
 position = Vector2(-1, -77)
 scale = Vector2(-0.0372638, -0.0238287)
 texture = ExtResource("4_71hej")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_4qdmw")
+volume_db = 4.0
 
 [connection signal="timeout" from="MealDialogue/DiaTimer" to="." method="_on_dia_timer_timeout"]

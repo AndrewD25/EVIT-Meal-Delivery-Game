@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw14asiy5lnrk"]
+[gd_scene load_steps=12 format=3 uid="uid://dw14asiy5lnrk"]
 
 [ext_resource type="Texture2D" uid="uid://btbe5vd7v78wh" path="res://Assets/guard_03.png" id="1_tjkjy"]
 [ext_resource type="Script" path="res://Scripts/homing_guard.gd" id="1_vi4r6"]
 [ext_resource type="AudioStream" uid="uid://cmgqc4mlfva0s" path="res://Audio/Metal.mp3" id="3_g4b63"]
+[ext_resource type="AudioStream" uid="uid://cv3pv7mame6fo" path="res://Audio/slowSteps.wav" id="4_82tmm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ul2l6"]
 radius = 309.002
@@ -112,6 +113,12 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("3_g4b63")
 volume_db = -10.0
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_82tmm")
+volume_db = 4.0
+autoplay = true
 
 [connection signal="body_entered" from="Chase_Range" to="." method="_on_chase_range_body_entered"]
 [connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]

@@ -30,10 +30,6 @@ variables={}
 
 window/stretch/mode="canvas_items"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
-
 [input]
 
 up={

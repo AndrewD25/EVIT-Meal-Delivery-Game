@@ -15,6 +15,8 @@ func _physics_process(_delta):
 func play_end_dialogue():
 	if playerNode.meals > 0:
 		win()
+	else:
+		pass
 
 func win():
 	active = false
