@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dm4l25nstc85o"
+path="res://.godot/imported/Taser Gun - Sound Effect [HD].mp3-c7167bb10e56d6c1a43a6268c5fa3551.mp3str"
+
+[deps]
+
+source_file="res://Audio/Taser Gun - Sound Effect [HD].mp3"
+dest_files=["res://.godot/imported/Taser Gun - Sound Effect [HD].mp3-c7167bb10e56d6c1a43a6268c5fa3551.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

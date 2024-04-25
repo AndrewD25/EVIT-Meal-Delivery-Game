@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0c8fa8hl05d7"
+path="res://.godot/imported/Metal Gear Solid Alert Sound Effect.mp3-f143b504c4148f0eba520b0676dd9b26.mp3str"
+
+[deps]
+
+source_file="res://Audio/Metal Gear Solid Alert Sound Effect.mp3"
+dest_files=["res://.godot/imported/Metal Gear Solid Alert Sound Effect.mp3-f143b504c4148f0eba520b0676dd9b26.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

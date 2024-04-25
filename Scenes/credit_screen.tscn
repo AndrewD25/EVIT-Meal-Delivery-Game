@@ -28,6 +28,7 @@ offset_bottom = 51.0
 text = "Back"
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.1
 autostart = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

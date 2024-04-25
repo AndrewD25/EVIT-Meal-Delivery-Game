@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7ho3n5nukp0r"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ho3n5nukp0r"]
 
 [ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_218g8"]
+[ext_resource type="Texture2D" uid="uid://j0kp8gtwv42b" path="res://Assets/static.jpg" id="2_4myw4"]
 [ext_resource type="AudioStream" uid="uid://car1ybk676xeu" path="res://Audio/gover.mp3" id="2_k0roj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcntj"]
-bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -22,6 +23,11 @@ offset_top = -24.0
 offset_right = 1209.0
 offset_bottom = 682.0
 color = Color(0, 0, 0, 1)
+
+[node name="Static" type="Sprite2D" parent="ColorRect"]
+position = Vector2(642.25, 347)
+scale = Vector2(1.7827, 1.75)
+texture = ExtResource("2_4myw4")
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 0
@@ -62,7 +68,8 @@ text = "Quit"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_k0roj")
-volume_db = 1.0
+volume_db = 0.5
+pitch_scale = 0.6
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]

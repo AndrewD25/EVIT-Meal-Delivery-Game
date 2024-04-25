@@ -8,6 +8,8 @@ var energy
 @export var meals = 5
 @export var interact = false
 var losingEnergy = true
+@export var canMove = true
+
 
 var gameOverTimer = 0
 
@@ -47,7 +49,7 @@ func _physics_process(delta):
 	%MealsRemaining.text = str(meals)
 	
 	#Move if energy left
-	if energy > 0.005:
+	if energy > 0.005 and meals > 0 and canMove:
 		velocity = direction * speed * (1 + 0.5 * sprintMulti)
 		if velocity.length() > 0:
 			$AnimationPlayer.play("walk_down")
@@ -63,7 +65,7 @@ func _physics_process(delta):
 				%Footsteps.stop()
 			
 		move_and_slide()
-	else: 
+	elif canMove: 
 		$AnimationPlayer.play("tired")
 		gameOverTimer += 1
 		if gameOverTimer >= 200:

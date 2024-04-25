@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/mainu.mp3-ef84bb2aad48fa6266d73b0d48dc7e05.mp
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
