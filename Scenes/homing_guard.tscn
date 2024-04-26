@@ -74,6 +74,7 @@ _data = {
 }
 
 [node name="HomingGuard" type="CharacterBody2D"]
+process_mode = 1
 collision_mask = 129
 platform_floor_layers = 4294967040
 script = ExtResource("1_vi4r6")
@@ -119,13 +120,31 @@ autoplay = true
 [node name="Alert" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_remqk")
-volume_db = 2.0
+volume_db = 1.0
 
 [node name="Taser" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_g5tmw")
 volume_db = 3.0
 
+[node name="Exclamation" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -80.0
+offset_right = 20.0
+offset_bottom = -41.0
+theme_override_colors/font_color = Color(1, 0.168627, 0.192157, 1)
+theme_override_font_sizes/font_size = 28
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertTimer" type="Timer" parent="Exclamation"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Chase_Range" to="." method="_on_chase_range_body_entered"]
 [connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]
 [connection signal="body_exited" from="Damage" to="." method="_on_damage_body_exited"]
+[connection signal="timeout" from="Exclamation/AlertTimer" to="." method="_on_alert_timer_timeout"]

@@ -10,7 +10,6 @@ func _on_back_pressed():
 
 func _on_timer_timeout():
 	var credit = Credits.instantiate()
-	print(len(lastThree))
 	credit.position.y = 678
 	credit.position.x = 421
 	add_child(credit)

@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://8t23fthalr34"]
+[gd_scene load_steps=8 format=3 uid="uid://8t23fthalr34"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_3d73v"]
 [ext_resource type="AudioStream" uid="uid://bqkn8c34x4hbg" path="res://Audio/mainu.mp3" id="2_6mdnu"]
+[ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="2_d1xgg"]
+[ext_resource type="Texture2D" uid="uid://bsjkbhrlmm2l2" path="res://Assets/chef.png" id="3_xf5in"]
+[ext_resource type="Texture2D" uid="uid://cah856mucemix" path="res://Assets/guard_02.png" id="4_4tphb"]
+
+[sub_resource type="Animation" id="Animation_3iav0"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [130, 131, 132, 133, 134, 135]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkwd4"]
+_data = {
+"run": SubResource("Animation_3iav0")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,6 +44,41 @@ offset_top = -13.0
 offset_right = 1162.0
 offset_bottom = 664.0
 color = Color(0.858824, 0.72549, 0.968627, 1)
+
+[node name="Player" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+position = Vector2(572, 226)
+rotation = -0.00178888
+scale = Vector2(13.12, 13.1585)
+texture = ExtResource("2_d1xgg")
+hframes = 56
+vframes = 20
+frame = 130
+
+[node name="Animator" type="AnimationPlayer" parent="Player"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_rkwd4")
+}
+
+[node name="Chef" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+position = Vector2(990, 334)
+rotation = 0.064514
+scale = Vector2(9.25382, 9.50216)
+texture = ExtResource("3_xf5in")
+hframes = 56
+vframes = 20
+frame = 3
+
+[node name="Guard02" type="Sprite2D" parent="."]
+position = Vector2(164.502, 332.247)
+rotation = -0.151256
+scale = Vector2(9.19876, 9.13294)
+texture = ExtResource("4_4tphb")
+hframes = 56
+vframes = 20
+frame = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -55,19 +115,19 @@ text = "Exit"
 [node name="EVITHeading" type="Label" parent="."]
 layout_mode = 2
 offset_left = 222.0
-offset_top = 77.0
+offset_top = 34.0
 offset_right = 614.0
-offset_bottom = 147.0
+offset_bottom = 104.0
 theme_override_colors/font_color = Color(0.509804, 0, 0.509804, 1)
 theme_override_font_sizes/font_size = 51
 text = "evit presents..."
 
 [node name="GameTitle" type="Label" parent="."]
 layout_mode = 2
-offset_left = 151.0
-offset_top = 141.0
-offset_right = 1000.0
-offset_bottom = 246.0
+offset_left = 152.0
+offset_top = 94.0
+offset_right = 1001.0
+offset_bottom = 199.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 76
 text = "Bistro 13 Delivery Dash"

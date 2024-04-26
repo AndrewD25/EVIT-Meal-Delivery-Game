@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck21wiifwmfio"]
+[gd_scene load_steps=3 format=3 uid="uid://ck21wiifwmfio"]
 
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_uvgcq"]
+[ext_resource type="AudioStream" uid="uid://ce2vaa6h316ib" path="res://Audio/DuckSong.mp3" id="2_yshhr"]
 
 [node name="CreditScreen" type="Control"]
 layout_mode = 3
@@ -30,6 +31,11 @@ text = "Back"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.1
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yshhr")
+volume_db = 1.0
+autoplay = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

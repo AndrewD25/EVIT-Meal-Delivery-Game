@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	%Animator.play("rest")
+
 
 func _on_retry_pressed():
 	get_tree().change_scene_to_file("res://Scenes/loading_screen.tscn")

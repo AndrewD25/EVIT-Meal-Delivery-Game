@@ -9,6 +9,7 @@ var random = RandomNumberGenerator.new()
 var posrandom = RandomNumberGenerator.new()
 
 func _ready():
+	%Exclamation.visible = false
 	random.randomize()
 	var randNum = random.randi_range(1,3)
 	var textures = [preload("res://Assets/guard_01.png"), preload("res://Assets/guard_02.png"), preload("res://Assets/guard_03.png")]
@@ -28,6 +29,8 @@ func _physics_process(delta):
 		if !chasing:
 			if !%Alert.playing:
 				%Alert.play()
+				%Exclamation.visible = true
+				%AlertTimer.start()
 		chasing = true
 		$AnimationPlayer.play("walk_down")
 		var player = target_player[0]
@@ -52,3 +55,7 @@ func _physics_process(delta):
 		player.updateBar()
 	else:
 		%Taser.stop()
+
+
+func _on_alert_timer_timeout():
+	%Exclamation.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=21 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
@@ -24,6 +24,57 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [74, 75, 76, 77, 78, 79]
+}
+
+[sub_resource type="Animation" id="Animation_41vrn"]
+resource_name = "idle_left"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [68, 69, 70, 71, 72, 73]
+}
+
+[sub_resource type="Animation" id="Animation_qmiha"]
+resource_name = "idle_right"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61]
+}
+
+[sub_resource type="Animation" id="Animation_auyqk"]
+resource_name = "idle_up"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [62, 63, 64, 65, 66, 67]
 }
 
 [sub_resource type="Animation" id="Animation_oftdp"]
@@ -117,6 +168,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x07yw"]
 _data = {
 "idle_down": SubResource("Animation_s5qgt"),
+"idle_left": SubResource("Animation_41vrn"),
+"idle_right": SubResource("Animation_qmiha"),
+"idle_up": SubResource("Animation_auyqk"),
 "sit": SubResource("Animation_oftdp"),
 "tired": SubResource("Animation_jxjhs"),
 "walk_down": SubResource("Animation_6yjq7"),
@@ -143,6 +197,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 collision_layer = 129
 platform_on_leave = 2
 platform_floor_layers = 4294967040
@@ -153,13 +208,14 @@ position = Vector2(0, -26)
 texture = ExtResource("1_hsblf")
 hframes = 56
 vframes = 20
-frame = 78
+frame = 76
 region_rect = Rect2(127.964, 333.843, 32.2454, 51.5226)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rkjrq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -260,4 +316,66 @@ unique_name_in_owner = true
 stream = ExtResource("5_4qdmw")
 volume_db = 4.0
 
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+offset = Vector2(575.555, 310.51)
+transform = Transform2D(1, 0, 0, 1, 575.555, 310.51)
+
+[node name="Label" type="Label" parent="PauseMenu"]
+z_index = 4096
+offset_left = -209.0
+offset_top = -127.0
+offset_right = 210.0
+offset_bottom = -18.0
+theme_override_font_sizes/font_size = 46
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+z_index = 4096
+offset_left = -165.0
+offset_top = -3.0
+offset_right = 164.0
+offset_bottom = 131.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[node name="Controls" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "Quit to Controls Screen"
+
+[node name="Mainu" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "Quit to Main Menu"
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+process_mode = 3
+z_index = 4000
+offset_left = -210.0
+offset_top = -154.0
+offset_right = 209.0
+offset_bottom = 176.0
+mouse_filter = 2
+color = Color(0.705882, 0.0823529, 1, 0.733333)
+
 [connection signal="timeout" from="MealDialogue/DiaTimer" to="." method="_on_dia_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Mainu" to="." method="_on_mainu_pressed"]
