@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://5ih5ub8sht77"]
+[gd_scene load_steps=22 format=3 uid="uid://5ih5ub8sht77"]
 
 [ext_resource type="Texture2D" uid="uid://bx533t8fdja6g" path="res://Assets/player.png" id="1_hsblf"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="2_g4chh"]
 [ext_resource type="Texture2D" uid="uid://dae08nsyvamir" path="res://Assets/e_prompt.png" id="3_36a2x"]
 [ext_resource type="Texture2D" uid="uid://6b60fupwh1ps" path="res://Assets/arrow.png" id="4_71hej"]
 [ext_resource type="AudioStream" uid="uid://cv3pv7mame6fo" path="res://Audio/slowSteps.wav" id="5_4qdmw"]
+[ext_resource type="PackedScene" uid="uid://c7ho3n5nukp0r" path="res://Scenes/game_over.tscn" id="6_0toai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkjrq"]
 radius = 8.0
@@ -208,7 +209,7 @@ position = Vector2(0, -26)
 texture = ExtResource("1_hsblf")
 hframes = 56
 vframes = 20
-frame = 76
+frame = 74
 region_rect = Rect2(127.964, 333.843, 32.2454, 51.5226)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -324,13 +325,13 @@ offset = Vector2(575.555, 310.51)
 transform = Transform2D(1, 0, 0, 1, 575.555, 310.51)
 
 [node name="Label" type="Label" parent="PauseMenu"]
-z_index = 4096
+z_index = 3999
 offset_left = -209.0
 offset_top = -127.0
 offset_right = 210.0
 offset_bottom = -18.0
 theme_override_font_sizes/font_size = 46
-text = "Menu"
+text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -375,7 +376,20 @@ offset_bottom = 176.0
 mouse_filter = 2
 color = Color(0.705882, 0.0823529, 1, 0.733333)
 
+[node name="GameOverMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameOver" parent="GameOverMenu" instance=ExtResource("6_0toai")]
+unique_name_in_owner = true
+z_index = 4000
+offset_left = 1.0
+offset_top = 11.0
+offset_right = 1.0
+offset_bottom = 11.0
+
 [connection signal="timeout" from="MealDialogue/DiaTimer" to="." method="_on_dia_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/Mainu" to="." method="_on_mainu_pressed"]
+[connection signal="restart" from="GameOverMenu/GameOver" to="." method="_on_game_over_restart"]

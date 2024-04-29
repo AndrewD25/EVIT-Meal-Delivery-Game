@@ -83,10 +83,10 @@ frame = 3
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.132813
-anchor_top = 0.00462963
-anchor_right = 0.0711806
-anchor_bottom = 0.109568
+anchor_left = -0.134549
+anchor_top = -0.0540123
+anchor_right = 0.069445
+anchor_bottom = 0.171296
 offset_left = 451.0
 offset_top = 457.0
 offset_right = 764.0
@@ -100,6 +100,11 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Play"
+
+[node name="Play2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "The Ultimate EVIT Guidebook"
 
 [node name="Credit" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -138,5 +143,6 @@ volume_db = 1.0
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play2" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

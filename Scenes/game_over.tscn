@@ -100,11 +100,11 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_vcntj")
 text = "Quit"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("2_k0roj")
-volume_db = 0.5
+volume_db = 16.0
 pitch_scale = 0.6
-autoplay = true
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(251, 293)

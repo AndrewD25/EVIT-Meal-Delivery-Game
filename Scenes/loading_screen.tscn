@@ -54,6 +54,18 @@ text = "Bistro 13 Delivery Dash"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Game Name2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 74.0
+offset_right = 1135.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.509804, 0.407843, 0.509804, 1)
+theme_override_font_sizes/font_size = 26
+text = "(Be patient, this is the only load screen)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 607.0
@@ -82,7 +94,7 @@ scale = Vector2(11.5938, 9.88281)
 texture = ExtResource("2_ht0f5")
 hframes = 56
 vframes = 20
-frame = 1
+frame = 3
 
 [node name="ChefAnimator" type="AnimationPlayer" parent="Chef"]
 unique_name_in_owner = true

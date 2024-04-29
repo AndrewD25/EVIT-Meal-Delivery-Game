@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal pos_reset
 
 @export var speed = 300
 var oldVelocity:Vector2
@@ -13,17 +14,19 @@ var paused = false
 var gameOverTimer = 0
 
 @onready var b3 = get_parent().get_node("building_3")
-
+@onready var main_game_audio = get_parent().get_node("BGM")
 
 func _ready():
 	$AnimationPlayer.play("idle_down")
 	energyBar = %EnergyBar
-	energy = energyBar.value
+	energy = 100
+	updateBar()
 	meals = 5
 	position.x = -252
 	position.y = 327
 	%Arrow.visible = true
 	%PauseMenu.visible = false
+	%GameOverMenu.visible = false
 	
 	#Set location
 	%CurrentLocation.text = "EVIT Campus" #Re-add new detection system 
@@ -98,7 +101,7 @@ func _physics_process(delta):
 		$AnimationPlayer.play("tired")
 		gameOverTimer += 1
 		if gameOverTimer >= 200:
-			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+			game_over()
 
 func updateBar():
 	energyBar.value = energy
@@ -135,3 +138,36 @@ func _on_mainu_pressed():
 	%PauseMenu.visible = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	
+func game_over():
+	pos_reset.emit()
+	
+	%PauseMenu.visible = false
+	%GameOverMenu.visible = true
+	%Footsteps.stop()
+	main_game_audio.stop()
+	%GameOver.get_node("MusicPlayer").playing = true
+	canMove = false
+
+
+func _on_game_over_restart():
+	
+	%GameOverMenu/GameOver/MusicPlayer.stop()
+	main_game_audio.play()
+	$AnimationPlayer.play("idle_down")
+	energyBar = %EnergyBar
+	energy = 100
+	updateBar()
+	meals = 5
+	position.x = -252
+	position.y = 327
+	%Arrow.visible = true
+	%PauseMenu.visible = false
+	%GameOverMenu.visible = false
+	canMove = true
+	
+	if !losingEnergy:
+		insideFlip()
+	
+	#Set location
+	%CurrentLocation.text = "EVIT Campus" #Re-add new detection system
