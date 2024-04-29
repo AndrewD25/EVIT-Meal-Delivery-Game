@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyko0v42pm5kf"]
+
+[ext_resource type="Script" path="res://Scenes/mrsaar.gd" id="1_2pyh2"]
+[ext_resource type="Texture2D" uid="uid://bfleg5vhd0y67" path="res://Assets/saar.png" id="1_rs8kw"]
+[ext_resource type="AudioStream" uid="uid://cv3pv7mame6fo" path="res://Audio/slowSteps.wav" id="3_sexhi"]
+[ext_resource type="AudioStream" uid="uid://d0c8fa8hl05d7" path="res://Audio/Metal Gear Solid Alert Sound Effect.mp3" id="4_3vr4b"]
+[ext_resource type="AudioStream" uid="uid://dm4l25nstc85o" path="res://Audio/Taser Gun - Sound Effect [HD].mp3" id="5_em20y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ul2l6"]
+radius = 167.327
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nlxn"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53b1i"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_hs7ar"]
+resource_name = "idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [74, 75, 76, 77, 78, 79]
+}
+
+[sub_resource type="Animation" id="Animation_j4eoq"]
+resource_name = "taser"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [970, 971, 972, 973, 974, 975]
+}
+
+[sub_resource type="Animation" id="Animation_q0vli"]
+resource_name = "walk_down"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [130, 131, 132, 133, 134, 135]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ltg5v"]
+_data = {
+"idle": SubResource("Animation_hs7ar"),
+"taser": SubResource("Animation_j4eoq"),
+"walk_down": SubResource("Animation_q0vli")
+}
+
+[node name="MrSaar" type="CharacterBody2D"]
+process_mode = 1
+scale = Vector2(2, 2)
+collision_mask = 129
+platform_floor_layers = 4294967040
+script = ExtResource("1_2pyh2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_rs8kw")
+hframes = 56
+vframes = 20
+frame = 970
+
+[node name="Chase_Range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Range"]
+shape = SubResource("CircleShape2D_ul2l6")
+debug_color = Color(0.807843, 0.376471, 0.462745, 0.419608)
+
+[node name="Damage" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("CircleShape2D_0nlxn")
+debug_color = Color(0.945098, 0, 0.6, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_53b1i")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ltg5v")
+}
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_sexhi")
+volume_db = 4.0
+autoplay = true
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_3vr4b")
+volume_db = 1.0
+
+[node name="Taser" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_em20y")
+volume_db = 3.0
+
+[node name="Exclamation" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -20.0
+offset_top = -80.0
+offset_right = 20.0
+offset_bottom = -41.0
+theme_override_colors/font_color = Color(1, 0.168627, 0.192157, 1)
+theme_override_font_sizes/font_size = 28
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertTimer" type="Timer" parent="Exclamation"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -41.0
+offset_top = 8.5
+offset_right = 48.0
+offset_bottom = 20.5
+theme_override_font_sizes/font_size = 8
+text = "Boss Enemy: Mr. Saar"
+
+[connection signal="body_entered" from="Chase_Range" to="." method="_on_chase_range_body_entered"]
+[connection signal="body_entered" from="Damage" to="." method="_on_damage_body_entered"]
+[connection signal="body_exited" from="Damage" to="." method="_on_damage_body_exited"]
+[connection signal="timeout" from="Exclamation/AlertTimer" to="." method="_on_alert_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://73psj7vl0i11"]
+
+[ext_resource type="Script" path="res://Scenes/health_item.gd" id="1_7xqmu"]
+[ext_resource type="Texture2D" uid="uid://cubxg4yvfhqso" path="res://Assets/bottle.png" id="1_u6oal"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kj68r"]
+radius = 3.0
+height = 22.0
+
+[node name="HealthItem" type="Area2D"]
+scale = Vector2(1.53, 1.53)
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("1_7xqmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.107501, 0)
+scale = Vector2(0.0546566, 0.055)
+texture = ExtResource("1_u6oal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kj68r")
